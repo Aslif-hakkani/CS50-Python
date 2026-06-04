@@ -1,0 +1,12 @@
+expression = input("Expression: ")
+x, y, z = expression.split(" ")
+x, z = int(x), int(z)
+
+if y == "+":
+    print(f"{x + z:.1f}")
+elif y == "-":
+    print(f"{x - z:.1f}")
+elif y == "*":
+    print(f"{x * z:.1f}")
+elif y == "/":
+    print(f"{x / z:.1f}")
