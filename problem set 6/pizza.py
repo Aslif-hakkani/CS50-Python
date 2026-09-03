@@ -1,4 +1,6 @@
+import csv
 import sys
+from tabulate import tabulate
 
 
 def main():
@@ -7,25 +9,16 @@ def main():
     if len(sys.argv) > 2:
         sys.exit("Too many command-line arguments")
 
-    if not sys.argv[1].endswith(".py"):
-        sys.exit("Not a Python file")
+    if not sys.argv[1].endswith(".csv"):
+        sys.exit("Not a CSV file")
 
     try:
         with open(sys.argv[1]) as file:
-            count = 0
-
-            for line in file:
-                line = line.strip()
-
-                if line == "" or line.startswith("#"):
-                    continue
-
-                count += 1
-
+            table = list(csv.reader(file))
     except FileNotFoundError:
         sys.exit("File does not exist")
 
-    print(count)
+    print(tabulate(table[1:], headers=table[0], tablefmt="grid"))
 
 
 if __name__ == "__main__":
